@@ -1,0 +1,29 @@
+<! DOCKTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>ExpenseTracker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<h1>Purchases</h1>
+<table>
+<tbody>
+<tr>
+<th>Name</th>
+<th>Price</th>
+<th>Description</th>
+<th>Date</th>
+<th>Category</th>
+</tr>
+<tr th:each = "purchase : ${purchase}">
+<td th:text="${purchase.name}"></td>
+<td th:text="${purchase.price}"></td>
+<td th:text="${purchase.description}"></td>
+<td th:text="${purchase.date}"></td>
+<td th:text="${purchase.category.name}"></td>
+<td><a th:href="@{/delete/{id}(id=${purchass.id})}">Delete</a></td>
+</tr>
+</tbody>
+</table>
+<a href="/add" class="btn btn-primary">Add Purchase</a>
+</html>
