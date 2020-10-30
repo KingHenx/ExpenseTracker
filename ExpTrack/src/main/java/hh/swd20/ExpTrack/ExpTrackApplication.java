@@ -31,7 +31,7 @@ public class ExpTrackApplication {
 			cRepository.save(y);
 			cRepository.save(z);
 			
-			Purchase a = new Purchase("Bread", 1.59, "From fLidl", LocalDate.of(2020, 5, 4), x);
+			Purchase a = new Purchase("Bread", 1.59, "From Lidl", LocalDate.of(2020, 5, 4), x);
 			Purchase b = new Purchase("Tennis Shoes", 45.99, "From Stadium", LocalDate.of(2020, 6, 12), x);
 			Purchase c = new Purchase("Train Ticket", 6.98, "from VR, from Helsinki to Kouvola", LocalDate.of(2020, 10, 3), x);
 

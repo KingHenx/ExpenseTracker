@@ -15,13 +15,13 @@
 <th>Date</th>
 <th>Category</th>
 </tr>
-<tr th:each = "purchase : ${purchase}">
+<tr th:each = "purchase : ${purchases}">
 <td th:text="${purchase.name}"></td>
 <td th:text="${purchase.price}"></td>
 <td th:text="${purchase.description}"></td>
 <td th:text="${purchase.date}"></td>
 <td th:text="${purchase.category.name}"></td>
-<td><a th:href="@{/delete/{id}(id=${purchass.id})}">Delete</a></td>
+<td><a th:href="@{/delete/{id}(id=${purchase.id})}">Delete</a></td>
 </tr>
 </tbody>
 </table>
