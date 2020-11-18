@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 import hh.swd20.ExpTrack.domain.Category;
@@ -16,8 +18,14 @@ import hh.swd20.ExpTrack.domain.UserRepository;
 
 
 @SpringBootApplication
-public class ExpTrackApplication {
+public class ExpTrackApplication extends SpringBootServletInitializer{
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		
+		return application.sources(ExpTrackApplication.class);
+	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ExpTrackApplication.class, args);
 	}
