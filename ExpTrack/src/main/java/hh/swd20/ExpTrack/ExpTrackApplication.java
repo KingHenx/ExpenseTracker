@@ -18,14 +18,8 @@ import hh.swd20.ExpTrack.domain.UserRepository;
 
 
 @SpringBootApplication
-public class ExpTrackApplication extends SpringBootServletInitializer{
+public class ExpTrackApplication{
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		
-		return application.sources(ExpTrackApplication.class);
-	}
-	
 	public static void main(String[] args) {
 		SpringApplication.run(ExpTrackApplication.class, args);
 	}
