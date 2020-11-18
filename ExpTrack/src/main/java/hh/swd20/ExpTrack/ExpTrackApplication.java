@@ -4,10 +4,11 @@ import java.time.LocalDate;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import hh.swd20.ExpTrack.domain.Category;
 import hh.swd20.ExpTrack.domain.CategoryRepository;
@@ -17,6 +18,9 @@ import hh.swd20.ExpTrack.domain.User;
 import hh.swd20.ExpTrack.domain.UserRepository;
 
 
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
 @SpringBootApplication
 public class ExpTrackApplication{
 
