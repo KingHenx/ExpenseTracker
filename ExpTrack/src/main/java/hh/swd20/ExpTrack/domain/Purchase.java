@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,11 +18,12 @@ public class Purchase {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public long id;
+	public Long id;
 	
 	public String name;
 	public double price;
 	public String description;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public LocalDate date;
 	
 	@ManyToOne
@@ -41,6 +43,10 @@ public class Purchase {
 		this.category = category;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}

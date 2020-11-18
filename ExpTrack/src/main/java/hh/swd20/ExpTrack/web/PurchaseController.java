@@ -1,5 +1,6 @@
 package hh.swd20.ExpTrack.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,12 +35,74 @@ public class PurchaseController {
 		return pRepository.findById(purchaseId);
 	}
 	
-	@RequestMapping("/*")
+	
+	@RequestMapping({"/", "/main"})
 	public String index(Model model) {
 		
 		model.addAttribute("purchases", pRepository.findAll());
+		model.addAttribute("categories", cRepository.findAll());
+		
+		for(int month = 1; month < 13; month++) {
+			
+			double total = 0;
+			for(Purchase purchase : pRepository.findAll()) {
+				if(purchase.date.getMonthValue() == month)
+				total += purchase.price;
+			}
+			model.addAttribute("data" + month, total);
+		}
 		
 		return "main";
 	}
 	
+	@RequestMapping(value = "/purchasebycategory/{id}")
+	public String purchasebycategory(@PathVariable("id") Long categoryid, Model model) {
+		
+		List<Purchase> purchases = new ArrayList<Purchase>();
+		for(Purchase purchase : pRepository.findAll())
+			if(purchase.getCategory().getId() == categoryid)
+				purchases.add(purchase);
+		
+		model.addAttribute("purchases", purchases);
+		model.addAttribute("categories", cRepository.findAll());
+		
+		for(int month = 1; month < 13; month++) {
+			
+			double total = 0;
+			for(Purchase purchase : purchases) {
+				if(purchase.date.getMonthValue() == month)
+				total += purchase.price;
+			}
+			model.addAttribute("data" + month, total);
+			String categoryname = cRepository.findById(categoryid).get().getName();
+			model.addAttribute("categoryname", categoryname);
+		}
+		
+		
+		return "purchasesbycategory";
+	}
+	
+	
+	@RequestMapping(value = "/add")
+	public String addPurchase(Model model) {
+		model.addAttribute("purchase", new Purchase());
+		model.addAttribute("categories", cRepository.findAll());
+		return "addpurchase";
+	}
+	
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(Purchase purchase) {
+		
+		pRepository.save(purchase);
+		return "redirect:main";
+	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String deletePurchase(@PathVariable("id") Long purchaseId, Model model) {
+		pRepository.deleteById(purchaseId);
+		return "redirect:../main";
+	}
+	
+	
+
 }
